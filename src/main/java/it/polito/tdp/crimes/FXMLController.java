@@ -5,8 +5,10 @@
 package it.polito.tdp.crimes;
 
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
+import it.polito.tdp.crimes.model.Event;
 import it.polito.tdp.crimes.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,10 +27,10 @@ public class FXMLController {
     private URL location;
 
     @FXML // fx:id="boxCategoria"
-    private ComboBox<?> boxCategoria; // Value injected by FXMLLoader
+    private ComboBox<String> boxCategoria; // Value injected by FXMLLoader
 
     @FXML // fx:id="boxMese"
-    private ComboBox<?> boxMese; // Value injected by FXMLLoader
+    private ComboBox<String> boxMese; // Value injected by FXMLLoader
 
     @FXML // fx:id="btnAnalisi"
     private Button btnAnalisi; // Value injected by FXMLLoader
@@ -44,6 +46,20 @@ public class FXMLController {
 
     @FXML
     void doCalcolaPercorso(ActionEvent event) {
+    	
+    	txtResult.clear();
+    	
+    	String categoria = this.boxCategoria.getValue();
+    	
+    	int mese = Integer.parseInt(this.boxMese.getValue());
+    	
+    	this.model.creaGrafo(categoria, mese);
+    	
+    	String percorso = "";
+    	/*for() {
+    		
+    	}*/
+    	txtResult.appendText("");
 
     }
 
@@ -65,5 +81,7 @@ public class FXMLController {
     
     public void setModel(Model model) {
     	this.model = model;
+    	this.boxCategoria.getItems().addAll(model.tutteCategorie());
+    	this.boxMese.getItems().addAll(model.mesi());
     }
 }

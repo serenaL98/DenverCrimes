@@ -19,6 +19,10 @@ public class Event {
 	private Integer is_crime;
 	private Integer is_traffic;
 	
+	public Event() {
+		
+	}
+	
 	public Event(Long incident_id, Integer offense_code, Integer offense_code_extension, String offense_type_id,
 			String offense_category_id, LocalDateTime reported_date, String incident_address, double geo_lon,
 			double geo_lat, Integer district_id, Integer precinct_id, String neighborhood_id, Integer is_crime,
